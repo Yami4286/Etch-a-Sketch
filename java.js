@@ -1,3 +1,7 @@
+function blackhover(e){
+    e.target.style.backgroundColor = "black";
+}
+
 function forGrid(size) {
     let remov = document.querySelectorAll(".column, .row");
     remov.forEach(element => {element.remove();});
@@ -13,8 +17,7 @@ function forGrid(size) {
       row.style.height = Siz+ "px";
     
       row.classList.add("row")
-      row.addEventListener("mouseenter", () => { row.style.backgroundColor = "black";
-    row.style.color = "red";})
+      row.addEventListener("mouseenter", blackhover);
      column.appendChild(row);
     b++
     }
@@ -23,19 +26,45 @@ function forGrid(size) {
 }
 
 let bt = document.querySelector("#bt");
-
+let btn = document.querySelector("#bti");
+let bti = document.querySelector("#bto");
+ btn.addEventListener("click", () => {ranDoApply()});
 bt.addEventListener("click", () =>  { 
     let cons = prompt("Put the Value")
        let value = parseInt(cons);
-    if (isNaN(value)) {
-        alert("Please enter a number");
-        return;
-    }
 
     if (value > 100) {
         alert("Value must be less than 101");
         return;
     }
+     if (isNaN(value)) {
+        alert("Please enter a number");
+        return;
+    } 
+         forGrid(value)
+    });
 
+    function randColor(e){
+        let r = Math.floor(Math.random() *256);
+        let g = Math.floor(Math.random() *256);
+        let b = Math.floor(Math.random() *256);
+        e.target.style.backgroundColor =`rgb( ${r} ,${g} , ${b})` ;
+    }
+function ranDoApply(){
+    let squares = document.querySelectorAll(".row");
+    squares.forEach(square => {
+        square.removeEventListener("mouseenter", blackhover);
+square.addEventListener("mouseenter", randColor);
+    });}
 
-    forGrid(value)});
+    function black() {
+    let squares = document.querySelectorAll(".row");
+    squares.forEach(square => {
+        square.removeEventListener("mouseenter", randColor);
+square.addEventListener("mouseenter", blackhover);
+    });
+}
+    btn.addEventListener("click", () => {ranDoApply()});
+    bti.addEventListener("click", ()=> { black()});
+
+    

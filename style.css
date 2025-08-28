@@ -43,7 +43,7 @@ html, body {
      justify-content: center;
 }
 
-#bt{
+#bt , #bti, #bto{
     border: 2px transparent solid;
     padding: 12px;
        border-radius:2px;
