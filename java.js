@@ -8,20 +8,25 @@ function forGrid(size) {
     column.classList.add("column");
     for(let j = 1 ; j <= size ; j++){
       let row = document.createElement("div");
-      row.style.border = "2px solid black"
+      let Siz = 960/size;
+      row.style.width = Siz + "px";
+      row.style.height = Siz+ "px";
+    
       row.classList.add("row")
-      row.textContent = b;
+      row.addEventListener("mouseenter", () => { row.style.backgroundColor = "black";
+    row.style.color = "red";})
      column.appendChild(row);
     b++
     }
     screen.appendChild(column);
   }
 }
-let cons = document.querySelector("#Size");
+
 let bt = document.querySelector("#bt");
 
 bt.addEventListener("click", () =>  { 
-       let value = parseInt(cons.value);
+    let cons = prompt("Put the Value")
+       let value = parseInt(cons);
     if (isNaN(value)) {
         alert("Please enter a number");
         return;
@@ -34,5 +39,3 @@ bt.addEventListener("click", () =>  {
 
 
     forGrid(value)});
-
-
